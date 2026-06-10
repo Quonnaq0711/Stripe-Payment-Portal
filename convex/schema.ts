@@ -6,5 +6,7 @@ export default defineSchema({
         email: v.string(),
         name: v.string(),
         clerkId: v.string(),
+        username: v.optional(v.string()),
+        phone: v.optional(v.string()),
     }).index("clerkId", ["clerkId"]),
 })

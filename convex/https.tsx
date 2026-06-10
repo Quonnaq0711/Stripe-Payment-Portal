@@ -3,7 +3,7 @@ import { HttpRouter } from "convex/server";
 import { httpAction } from "./_generated/server";
 import { Webhook } from "svix"; 
 import { WebhookEvent } from "@clerk/nextjs/server";
-import { api } from "./_generated/api";
+import { internal } from "./_generated/api";
 
 const http = new HttpRouter();
 
@@ -49,15 +49,30 @@ const clerkwebhook = httpAction(async ( ctx, request ) => {
     const EventType = event.type;
 
     if (EventType === "user.created") {
-        const { email_addresses, first_name, last_name, id } = event.data;
-        const email = email_addresses[0].email_address;
-        const name = `${first_name || ""} ${last_name || ""}`.trim();
+        const { id, email_addresses, phone_numbers, username, first_name, last_name, external_accounts } = event.data;
+        
+        const email = email_addresses[0]?.email_address ?? "";
+        const phone = phone_numbers[0]?.phone_number;
+
+        // 0Auth fallback for when first/last name not available - username fallback
+        const authName = [
+            external_accounts[0]?.first_name,
+            external_accounts[0]?.last_name
+        ].filter(Boolean).join(" ").trim();
+        
+        const name = [first_name, last_name].filter(Boolean).join(" ").trim()
+            || authName
+            || username
+            || "Unknown";
+        
 
         try {
-            await ctx.runMutation(api.users.createUser, {
+            await ctx.runMutation(internal.users.createUser, {
+                clerkId: id,
                 email,
                 name,
-                clerkId: id
+                username: username ?? undefined,
+                phone: phone ?? undefined,
             })
         } catch (err) { 
             console.error("Error creating user in Convex", err);
