@@ -4,8 +4,9 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import { Show, SignOutButton } from "@clerk/nextjs";
+import { Show, SignInButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 export default async function Home() {
   const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
@@ -44,24 +45,32 @@ export default async function Home() {
                   <CardTitle className="text-xl mb-2 hover:underline">{sub.title}</CardTitle>
               </CardContent>
               </Link>
-              <CardFooter>
+              <CardFooter className="flex items-center justify-between">
                 <Badge variant="default" className="text-lg px-3 py-1">
                   {sub.price}
                 </Badge>
-              </CardFooter>
               <Show when="signed-in">
                 Enroll
               </Show>
               <Show when="signed-out">
-                <SignOutButton>
-                  <Button>
+                <SignInButton mode="modal">
+                  <Button variant="outline">
                     Enroll Now
                   </Button>
-                </SignOutButton>
+                </SignInButton>
               </Show>
+              </CardFooter>
             </Card>
           ))}
-          </div>
+        </div>
+        <div className="text-center">
+          <Link href="/pro">
+            <Button size="lg" className="group hover:bg-purple-900 transition-colors duration-300">
+              Pro Plans
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
+        </div>
       </main>
     </div>
   );

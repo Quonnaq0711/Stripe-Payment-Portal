@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Premium Fitness Club",
+    "description": "Unlimited workout classes, personalized training plans, and nutrition guidance.",
+    "price": "$19.99/month",
+    "imageUrl": "https://picsum.photos/400/300?random=1"
+  },
+  {
+    "title": "MovieStream Plus",
+    "description": "Watch thousands of movies, TV shows, and exclusive originals without ads.",
+    "price": "$12.99/month",
+    "imageUrl": "https://picsum.photos/400/300?random=2"
+  },
+  {
+    "title": "Cloud Storage Pro",
+    "description": "Securely store, sync, and share up to 2TB of files across all devices.",
+    "price": "$9.99/month",
+    "imageUrl": "https://picsum.photos/400/300?random=3"
+  },
+  {
+    "title": "Book Lovers Box",
+    "description": "Receive curated bestselling books and reading accessories every month.",
+    "price": "$24.99/month",
+    "imageUrl": "https://picsum.photos/400/300?random=4"
+  },
+  {
+    "title": "Healthy Meals Delivery",
+    "description": "Fresh, chef-prepared meals delivered weekly with customizable plans.",
+    "price": "$39.99/month",
+    "imageUrl": "https://picsum.photos/400/300?random=5"
+  },
+  {
+    "title": "Music Unlimited",
+    "description": "Ad-free music streaming with offline downloads and high-quality audio.",
+    "price": "$7.99/month",
+    "imageUrl": "https://picsum.photos/400/300?random=6"
+  },
+  {
+    "title": "Pet Care Essentials",
+    "description": "Monthly delivery of treats, toys, and wellness products for your pet.",
+    "price": "$29.99/month",
+    "imageUrl": "https://picsum.photos/400/300?random=7"
+  },
+  {
+    "title": "Developer Toolkit",
+    "description": "Access premium coding resources, templates, and developer courses.",
+    "price": "$14.99/month",
+    "imageUrl": "https://picsum.photos/400/300?random=8"
+  }
+]

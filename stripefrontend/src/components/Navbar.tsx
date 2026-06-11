@@ -21,23 +21,23 @@ const Navigation = () => {
           href={"/"}
           className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
         >
-          <Home className="w-6 h-6 text-white" />
-          <span className=" hidden sm:inline text-white">Home</span>
+          {/* <Home className="w-6 h-6 text-white" /> */}
+          <span className=" hidden sm:inline text-white">Vibes</span>
         </Link>
         <Link
-          href={"/about"}
+          href={"/Vibes"}
           className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
         >
-          <User className="w-6 h-6 text-white" />
-          <span className=" hidden sm:inline text-white">About</span>
+          {/* <User className="w-6 h-6 text-white" /> */}
+          <span className=" hidden sm:inline text-white">Pro</span>
         </Link>
-        <Link
+        {/* <Link
           href={"/contact"}
           className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
         >
           <Phone className="w-6 h-6 text-white" />
-          <span className=" hidden sm:inline text-white">Contact</span>
-        </Link>
+          <span className=" hidden md:inline text-white">Contact</span>
+        </Link> */}
 
         <Show when="signed-in">
           <Link href={"/billing"}>
