@@ -8,6 +8,7 @@ export const createUser = internalMutation({
         clerkId: v.string(),
         username: v.optional(v.string()),
         phone: v.optional(v.string()),
+        stripeCustomerId: v.optional(v.string()),
     },
     handler: async (ctx, args) => { 
         const existingUser = await ctx.db.query("users")
@@ -23,6 +24,7 @@ export const createUser = internalMutation({
             clerkId: args.clerkId,
             username: args.username,
             phone: args.phone,
+            stripeCustomerId: args.stripeCustomerId,
         });
         return newUser;
 

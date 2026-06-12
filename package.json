@@ -3,6 +3,7 @@
     "@clerk/nextjs": "^7.4.2",
     "@clerk/react": "^6.7.2",
     "convex": "^1.39.1",
+    "stripe": "^22.2.0",
     "svix": "^1.95.1"
   },
   "devDependencies": {

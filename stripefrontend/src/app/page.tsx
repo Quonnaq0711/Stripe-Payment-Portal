@@ -49,8 +49,10 @@ export default async function Home() {
                 <Badge variant="default" className="text-lg px-3 py-1">
                   {sub.price}
                 </Badge>
-              <Show when="signed-in">
-                Enroll
+                <Show when="signed-in">
+                  <Button variant="outline">
+                    Enroll
+                    </Button>
               </Show>
               <Show when="signed-out">
                 <SignInButton mode="modal">

@@ -21,16 +21,15 @@ const Navigation = () => {
           href={"/"}
           className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
         >
-          {/* <Home className="w-6 h-6 text-white" /> */}
           <span className=" hidden sm:inline text-white">Vibes</span>
         </Link>
         <Link
-          href={"/Vibes"}
+          href={"/pro"}
           className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
         >
-          {/* <User className="w-6 h-6 text-white" /> */}
           <span className=" hidden sm:inline text-white">Pro</span>
         </Link>
+        
         {/* <Link
           href={"/contact"}
           className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
@@ -46,7 +45,7 @@ const Navigation = () => {
               size={"sm"}
               className="text-sm font-medium text-primary hover:text-primary/80 transition-colors gap-2"
             >
-              <CreditCard className="w-4 h-4 text-Blac" />
+              <CreditCard className="w-4 h-4 text-Black" />
               <span className=" hidden sm:inline text-Black">Billing</span>
             </Button>
           </Link>
