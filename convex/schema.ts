@@ -1,7 +1,6 @@
 import { defineSchema, defineTable } from 'convex/server';
 import { v }from 'convex/values';
-import { subscribe } from 'node:diagnostics_channel';
-import { title } from 'node:process';
+
 
 export default defineSchema({
     users: defineTable({
@@ -12,7 +11,7 @@ export default defineSchema({
         phone: v.optional(v.string()),
         stripeCustomerId: v.optional(v.string()),
         currentSubscriptionPlanId: v.optional(v.id("subscriptionPlans")),
-    }).index("clerkId", ["clerkId"]),
+    }).index("by_clerkId", ["clerkId"]).index("by_stripeCustomerId", ["stripeCustomerId"]),
 
     subscriptions: defineTable({
         title: v.string(),

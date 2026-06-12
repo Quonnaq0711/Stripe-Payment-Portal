@@ -1,5 +1,6 @@
-import { internalMutation } from "./_generated/server";
-import { v } from "convex/values";
+import { Subscription } from './../node_modules/stripe/cjs/resources/Subscriptions.d';
+import { internalMutation, query } from "./_generated/server";
+import { ConvexError, v } from "convex/values";
 
 export const createUser = internalMutation({
     args: {
@@ -12,7 +13,7 @@ export const createUser = internalMutation({
     },
     handler: async (ctx, args) => { 
         const existingUser = await ctx.db.query("users")
-            .withIndex("clerkId", q => q.eq("clerkId", args.clerkId)).unique();
+            .withIndex("by_clerkId", q => q.eq("clerkId", args.clerkId)).unique();
         if (existingUser) {
             console.log("User already exists");
             return existingUser._id;
@@ -31,4 +32,53 @@ export const createUser = internalMutation({
     }
 
 
+});
+
+export const getUserByClerkId = query({
+    args: { clerkId: v.string(), },
+    handler: async (ctx, args) => {
+        return await ctx.db.query("users")
+            .withIndex("by_clerkId", q => q.eq("clerkId", args.clerkId)).unique();
+    }
+});
+
+export const getUserByStripeCustomerId = query({
+    args: { stripeCustomerId: v.string(), },
+    handler: async (ctx, args) => {
+        return await ctx.db.query("users")
+            .withIndex("by_stripeCustomerId", q => q.eq("stripeCustomerId", args.stripeCustomerId)).unique();
+    }
+});
+
+
+export const getUserAccess = query({
+    args: { userId: v.id("users"), SubscriptionId: v.id("subscriptions") },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) {
+            return new ConvexError("Unauthorized");
+        }
+
+        const user = await ctx.db.get(args.userId);
+        if (!user) {
+            return new ConvexError("User not found");
+        }
+
+        if (user.currentSubscriptionPlanId) {
+            const subscriptionPlan = await ctx.db.get(user.currentSubscriptionPlanId);
+            if (subscriptionPlan && subscriptionPlan.status === "active") {
+                return { hasAccess: true, accessType: "subscription" };
+            }
+        }
+
+        const purchases = await ctx.db.query("payments")
+            .withIndex("user_subscription", q => q.eq("userId", args.userId).eq("subscriptionId", args.SubscriptionId))
+            .unique();
+        
+        if (purchases) {
+            return { hasAccess: true, accessType: "subscription" };
+        }
+
+        return { hasAccess: false, accessType: "none" };
+    }
 });
