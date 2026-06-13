@@ -1,5 +1,5 @@
 "use client"
-import { Home, Phone, User, ChefHat, CreditCard, LogOut } from "lucide-react";
+import { CreditCard, LogOut } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { Show, SignInButton, SignOutButton, SignUpButton, UserButton } from "@clerk/nextjs";
@@ -12,7 +12,7 @@ const Navigation = () => {
         href={"/"}
         className="text-lg font-extrabold text-primary flex items-center gap-2"
       >
-        <ChefHat className="size-10 text-white" />
+        {/* <ChefHat className="size-10 text-white" /> */}
         <span className="text-white text-2xl">Crazy Goods</span>
       </Link>
 
