@@ -1,4 +1,4 @@
-import { query } from "../convex/_generated/server";
+import { query } from "./_generated/server";
 import { v } from "convex/values";
 
 export const getSubs = query({
@@ -9,9 +9,9 @@ export const getSubs = query({
   },
 });
 
-export const getSubtId = query({
-  args: { subscriptionsId: v.id("subscriptions") },
+export const getSubById = query({
+  args: { subscriptionId: v.id("subscriptions") },
   handler: async (ctx, args) => {
-    return await ctx.db.get(args.subscriptionsId);
+    return await ctx.db.get(args.subscriptionId);
   },
 });

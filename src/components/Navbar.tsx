@@ -18,7 +18,7 @@ const Navigation = () => {
 
       <div className="flex items-center sm:space-x-4 space-x-1">
         <Link
-          href={"/"}
+          href={"/subscriptions"}
           className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
         >
           <span className=" hidden sm:inline text-white">Vibes</span>

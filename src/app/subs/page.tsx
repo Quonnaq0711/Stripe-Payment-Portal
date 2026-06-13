@@ -1,11 +1,10 @@
 import React from 'react'
-import { api } from '../../../../convex/_generated/api';
+import { api } from '../../../convex/_generated/api';
 import { ConvexHttpClient } from 'convex/browser';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '../../components/ui/card';
+import { Badge } from '../../components/ui/badge';
 import { Show, SignInButton } from '@clerk/nextjs';
-import { Button } from '@/components/ui/button';
-// import { ArrowRight } from 'lucide-react';
+import { Button } from '../../components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 

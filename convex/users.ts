@@ -1,4 +1,3 @@
-import { Subscription } from './../node_modules/stripe/cjs/resources/Subscriptions.d';
 import { internalMutation, query } from "./_generated/server";
 import { ConvexError, v } from "convex/values";
 
@@ -52,7 +51,7 @@ export const getUserByStripeCustomerId = query({
 
 
 export const getUserAccess = query({
-    args: { userId: v.id("users"), SubscriptionId: v.id("subscriptions") },
+    args: { userId: v.id("users"), subscriptionId: v.id("subscriptions") },
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
         if (!identity) {
@@ -72,7 +71,7 @@ export const getUserAccess = query({
         }
 
         const purchases = await ctx.db.query("payments")
-            .withIndex("user_subscription", q => q.eq("userId", args.userId).eq("subscriptionId", args.SubscriptionId))
+            .withIndex("user_subscription", q => q.eq("userId", args.userId).eq("subscriptionId", args.subscriptionId))
             .unique();
         
         if (purchases) {

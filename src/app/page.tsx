@@ -1,11 +1,11 @@
 import { ConvexHttpClient } from "convex/browser";
-import { api } from "../../../convex/_generated/api";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { api } from "../../convex/_generated/api";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "../components/ui/badge";
 import { Show, SignInButton } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 export default async function Home() {
@@ -16,7 +16,7 @@ export default async function Home() {
     <div className="flex min-h-screen flox-col">
       <main className="grow container mx-auto px-4 py-16">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4 text-muted">
             Find your vibe, entertainment, and enjoy...
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
