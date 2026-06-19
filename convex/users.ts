@@ -55,12 +55,12 @@ export const getUserAccess = query({
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
         if (!identity) {
-            return new ConvexError("Unauthorized");
+            throw new ConvexError("Unauthorized");
         }
 
         const user = await ctx.db.get(args.userId);
         if (!user) {
-            return new ConvexError("User not found");
+            throw new ConvexError("User not found");
         }
 
         if (user.currentSubscriptionPlanId) {
