@@ -51,9 +51,9 @@ export default async function Home() {
                   {sub.price}
                 </Badge>
                 <Show when="signed-in">
-                  <Button variant="outline">
+                  
                     <PurchaseButton subId={sub._id} />
-                    </Button>
+                    
               </Show>
               <Show when="signed-out">
                 <SignInButton mode="modal">

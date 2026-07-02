@@ -41,16 +41,16 @@ export const CreateCheckoutSession = action({
                         currency: "usd",
                         product_data: {
                             name: sub.title,
-                            images: [sub.imageUrl]
+                            ...(sub.imageUrl ? sub.imageUrl.startsWith("https://") && { images: [sub.imageUrl] } : {})
                         },
-                        unit_amount: Math.round(parseFloat(sub.price) * 100)
+                        unit_amount: Math.round(parseFloat(sub.price.replace(/[^0-9.]/g, "")) * 100)
                     },
                     quantity: 1
                 }
             ],
             mode: "payment",
-            success_url: `${process.env.NEXT_PUBLIC_APP_URL}/subcriptions/${args.subId}/success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${process.env.NEXT_PUBLIC_APPP_URL}/subscriptions`,
+            success_url: `${process.env.NEXT_PUBLIC_APP_URL}/subscriptions/${args.subId}/success?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/subscriptions`,
             metadata: {
                 subId: args.subId,
                 userId: user._id

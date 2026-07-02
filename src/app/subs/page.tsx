@@ -7,6 +7,7 @@ import { Show, SignInButton } from '@clerk/nextjs';
 import { Button } from '../../components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
+import PurchaseButton from '@/components/PurchaseButton';
 
 
 const page = async() => {
@@ -40,7 +41,7 @@ const page = async() => {
                   {sub.price}
                 </Badge>
               <Show when="signed-in">
-                              Purchase
+                              <PurchaseButton subId={sub._id} />
               </Show>
               <Show when="signed-out">
                 <SignInButton mode="modal">
@@ -57,4 +58,4 @@ const page = async() => {
   )
 }
 
-export default page
+export default page;
