@@ -5,6 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 import ConvexClientProvider from '../components/providers/ConvexClientProvider'
 import { AuthButtons } from "../components/authButtons"
 import Navigation from '../components/Navbar'
+import { Toaster } from '@/components/ui/sonner'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -37,6 +38,7 @@ export default function RootLayout({
             <AuthButtons />
             <Navigation />
             {children}
+            <Toaster position="top-center" />
           </ConvexClientProvider>
         </ClerkProvider>
       </body>

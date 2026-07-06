@@ -7,6 +7,7 @@ import { Button } from "../components/ui/button"
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Id } from "../../convex/_generated/dataModel";
+import { toast } from "sonner";
 
 const PurchaseButton = ({ subId }: { subId: Id<"subscriptions"> }) => {
     const { user } = useUser()
@@ -30,7 +31,12 @@ const PurchaseButton = ({ subId }: { subId: Id<"subscriptions"> }) => {
                 throw new Error("Checkout Session Failed")
             }
         } catch (error: any) {
-            //  TODO: handle error properly, show toast
+            
+            if (error.message.includes("Rate limit exceeded")) {
+                toast.error("Rate limit exceeded. Please try again later.");
+            } else {
+                toast.error(error.message || "An error occurred while checking out, Please try again later.");
+            }
             console.log(error);
         } finally {
             setIsLoading(false)

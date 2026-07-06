@@ -2,6 +2,7 @@ import { ConvexError, v } from "convex/values";
 import { action } from "./_generated/server";
 import { api } from "./_generated/api";
 import StripeClient from "../src/lib/stripe"
+import ratelimit from "../src/lib/ratelimit"
 
 
 
@@ -22,7 +23,14 @@ export const CreateCheckoutSession = action({
             throw new ConvexError("User Not Found");
         }
 
-        //TODO: rate limiting
+        
+        const ratelimitKey = `checkout-limit:${user._id}`;
+        const { success } = await ratelimit.limit(ratelimitKey);
+
+        if (!success) {
+            throw new Error(`Rate limit exceeded. Please try again later.`);
+        }
+
 
         const sub = await ctx.runQuery(api.subs.getSubById, {
             subscriptionId: args.subId
