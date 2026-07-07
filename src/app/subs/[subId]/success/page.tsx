@@ -4,12 +4,23 @@ import { CheckCircle } from "lucide-react";
 import Link from "next/link";
 
 
-const page = ({ params, searchParams}: { params: { subId: string }; searchParams: { session_id: string } }) => {
+const page = async ({
+    params,
+    searchParams,
+}: {
+    params: Promise<{ subId: string }>;
+    searchParams: Promise<{ session_id?: string | string[] }>;
+}) => {
+    const { subId } = await params;
+    const resolvedSearchParams = await searchParams;
+    const sessionId =
+        typeof resolvedSearchParams.session_id === "string"
+            ? resolvedSearchParams.session_id
+            : Array.isArray(resolvedSearchParams.session_id)
+              ? resolvedSearchParams.session_id[0] ?? "N/A"
+              : "N/A";
 
-    const { subId } = params;
-    const { session_id } = searchParams;
-
-  return (
+    return (
       <div className="container mx-auto py-12 px-4">
           <Card className="max-w-2xl mx-auto">
               <CardHeader className="text-center">
@@ -24,7 +35,7 @@ const page = ({ params, searchParams}: { params: { subId: string }; searchParams
 
                   <div className="bg-grey-100 p-4 rounded-md">
                       <p className="text-sm text-grey-500">
-                          Transaction ID: {session_id}
+                          Transaction ID: {sessionId || "N/A"}
                       </p>
                   </div>
                   <div className="flex justify-center gap-4">
