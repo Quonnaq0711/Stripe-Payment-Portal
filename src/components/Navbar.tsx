@@ -43,7 +43,7 @@ const Navigation = () => {
             <Button
               variant={"outline"}
               size={"sm"}
-              className="text-sm font-medium text-primary hover:text-primary/80 transition-colors gap-2"
+              className="text-sm font-medium text-black hover:text-primary/80 transition-colors gap-2"
             >
               <CreditCard className="w-4 h-4 text-Black" />
               <span className=" hidden sm:inline text-Black">Billing</span>

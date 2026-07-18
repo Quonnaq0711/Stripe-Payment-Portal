@@ -21,7 +21,7 @@ const PurchaseButton = ({ subId }: { subId: Id<"subscriptions"> }) => {
     } : "skip") || { hasAccess: false };
 
     const handlePurchase = async () => {
-        if (!user) alert("Please log in to purchase")
+        if (!user) toast.error("Please log in to purchase", {id: "login-error"});
         setIsLoading(true);
         try {
             const { checkoutUrl } = await createCheckoutSession({ subId });
